@@ -12,6 +12,7 @@ import json
 
 import MUEBLERIA.save_files
 
+from pathlib import Path
 
 '''
 #------------------- REGLAS GENERALES ----------------<<<>>>
@@ -20,6 +21,7 @@ import MUEBLERIA.save_files
 #-----------------------------------------------------<<<>>>
 #-----------------------------------------------------<<<>>>
 '''
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 def index(request):
 	#Prodria registrar la cantidad de gente que ingresa a la pagina contador
@@ -34,7 +36,7 @@ def administrador_datos_mueble(request):
 
 			Imagenes_Productos = request.FILES.getlist('Imagenes_Producto')
 
-			direccion_carpeta = 'E:\\Proyectos_Django_2021\\PROYECTO_COMERCIO_MUEBLES\\MUEBLERIA\\MUEBLERIA\\static\\IMG_Proyecto'
+			direccion_carpeta = str( BASE_DIR ) +'\\MUEBLERIA\\static\\IMG_Proyecto'
 			direccion_carpeta_Proyecto = 'MUEBLERIA/static/IMG_Proyecto'
 			
 			MUEBLERIA.save_files.Guardar_En_Carpeta_Django(direccion_carpeta_Proyecto,direccion_carpeta,Imagenes_Productos) #funcion en archivo: save_files.py
@@ -63,7 +65,7 @@ def administrador_datos_categoria(request):
 			
 			lista_imagenes = [request.FILES.get('Imagen_Categoria')] #En este caso solo llega 1 imagen
 
-			direccion_carpeta = 'E:\\Proyectos_Django_2021\\PROYECTO_COMERCIO_MUEBLES\\MUEBLERIA\\MUEBLERIA\\static\\IMG_Proyecto'
+			direccion_carpeta = str( BASE_DIR ) + '\\MUEBLERIA\\static\\IMG_Proyecto'
 			direccion_carpeta_Proyecto = 'MUEBLERIA/static/IMG_Proyecto' 
 			
 			MUEBLERIA.save_files.Guardar_En_Carpeta_Django(direccion_carpeta_Proyecto,direccion_carpeta,lista_imagenes) #funcion en archivo: save_files.py
@@ -77,6 +79,21 @@ def administrador_datos_categoria(request):
 
 	return render(request,'administrador_categorias.html',{"formulario": DB.forms.Form_Entrada_Categorias()})
 
+def addMueble(request):
+	if request.method == 'POST': #Si se ingresan new Productos POST Django
+		formulario = DB.forms.Form_Entrada_ImagenMueble(request.POST,request.FILES)
+		if formulario.is_valid():
+
+			Imagenes_Productos = request.FILES.getlist('Imagenes_Producto') 
+			direccion_carpeta = str( BASE_DIR ) +'\\MUEBLERIA\\static\\IMG_Proyecto'
+			direccion_carpeta_Proyecto = 'MUEBLERIA/static/IMG_Proyecto'
+			
+			MUEBLERIA.save_files.Guardar_En_Carpeta_Django(direccion_carpeta_Proyecto,direccion_carpeta,Imagenes_Productos) #funcion en archivo: save_files.py
+
+			print( request.POST.get("EntradaNombreMueble") )
+
+	#GET
+	return render(request,'admin_new_mueble.html',{"formularioImagen": DB.forms.Form_Entrada_ImagenMueble() })
 
 def Inicio(request):
 	return render(request,'index.html',{})

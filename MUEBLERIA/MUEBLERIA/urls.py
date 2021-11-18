@@ -27,6 +27,8 @@ urlpatterns = [
     
     path('administrador_categoria/',administrador_datos_categoria ,name='add_Categorias'),
 
+    path('admin_newMueble/',addMueble ,name='addNewMueble'),
+
     path('', index , name='index'),
     
     path('Inicio/', Inicio , name='Inicio'),

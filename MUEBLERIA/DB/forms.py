@@ -101,3 +101,6 @@ class Form_Entrada_Productos(forms.Form):
 	
 	Imagenes_Producto = forms.ImageField(label='Imagenes',widget=forms.ClearableFileInput(attrs={'multiple': True}))
 	
+
+class Form_Entrada_ImagenMueble(forms.Form):
+	Imagenes_Producto = forms.ImageField( label='Imagenes', widget=forms.ClearableFileInput(attrs={'multiple': True}) )
