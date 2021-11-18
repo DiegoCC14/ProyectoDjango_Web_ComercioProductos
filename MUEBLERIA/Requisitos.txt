@@ -5,6 +5,8 @@ Requisitos:
 		python -m pip install Django
 	- Instalacion mysqlclient: 
 		pip install mysqlclient
+	- Instalacion Pillow:
+		python -m pip install Pillow
 Git:	
 
 - subir archivo :https://www.youtube.com/watch?v=jgeLj45G0tk
