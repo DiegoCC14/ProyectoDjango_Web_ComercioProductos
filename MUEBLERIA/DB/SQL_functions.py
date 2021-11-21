@@ -1,6 +1,8 @@
 import mysql.connector
 import datetime
 
+#mysql -h bm9h8scsip6va76legry-mysql.services.clever-cloud.com -P 3306 -u uejpo6trlzp13yjr -p bm9h8scsip6va76legry
+#Password: HMEJGv7Bs2rMQ8LCQZrj
 def Abrir_Conexion():
 
 	return mysql.connector.connect(

@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse #Retornara datos JSON a la pagina
 
 from DB.models import categoriamueble,mueble
+
 import DB.forms
 
 import DB.SQL_functions 
@@ -79,6 +80,8 @@ def administrador_datos_categoria(request):
 
 	return render(request,'administrador_categorias.html',{"formulario": DB.forms.Form_Entrada_Categorias()})
 
+
+
 def addMueble(request):
 	if request.method == 'POST': #Si se ingresan new Productos POST Django
 		formulario = DB.forms.Form_Entrada_ImagenMueble(request.POST,request.FILES)
@@ -94,6 +97,8 @@ def addMueble(request):
 
 	#GET
 	return render(request,'admin_new_mueble.html',{"formularioImagen": DB.forms.Form_Entrada_ImagenMueble() })
+
+
 
 def Inicio(request):
 	return render(request,'index.html',{})
